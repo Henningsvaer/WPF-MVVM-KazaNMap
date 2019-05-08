@@ -1,0 +1,198 @@
+﻿<Window x:Class="WPF_mapCourseWork.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:wpf_mapcoursework="clr-namespace:WPF_mapCourseWork"
+		xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+		mc:Ignorable="d"
+        Title="" Height="600" Width="800" Background="#000000">
+
+
+	<Window.DataContext>
+		<wpf_mapcoursework:ApplicationViewModel/>
+	</Window.DataContext>
+
+
+	<Grid x:Name="MainGrid">
+		<Grid.RowDefinitions>
+			<RowDefinition></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition></RowDefinition>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="250"></ColumnDefinition>
+			<ColumnDefinition Width="*"></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+
+		<!--Меню левая панель, открытая-->
+		<StackPanel x:Name="MenuStackPanel" Background="#7109AA" Grid.Column="0" 
+					Grid.RowSpan="4">
+			<TextBlock
+				    Foreground="White" Background="#48036F" 
+					VerticalAlignment="Center" 
+					HorizontalAlignment="Center" FontSize="24">
+					KazaNMap
+			</TextBlock>
+
+			<Button x:Name="HideButton" Click="HideButton_Click" Margin="215 -35 0 0" 
+					Foreground="White" Background="#AD66D5">
+				X
+			</Button>
+
+			<TextBlock
+				    Foreground="White" Background="#A035FF" 
+					VerticalAlignment="Center" 
+					HorizontalAlignment="Center" FontSize="18"
+					Margin="0 20 0 -50" Width="226"
+					Text="{Binding StringFormat=Маршрут : {0} метров, Path=RouteTo[4]}">
+			</TextBlock>
+			<TextBlock
+				    Foreground="White" Background="#A035FF" 
+					VerticalAlignment="Center" 
+					HorizontalAlignment="Center" FontSize="18"
+					Margin="0 50 114 -45" Width="114"
+					Text="{Binding StringFormat=ЗВ - {0}, Path=RouteTo[2]}">
+			</TextBlock>
+			<TextBlock
+				    Foreground="White" Background="#A035FF" 
+					VerticalAlignment="Center" 
+					HorizontalAlignment="Center" FontSize="18"
+					Margin="0 20 -114 -46" Width="114"
+					Text="{Binding StringFormat=СЮ - {0}, Path=RouteTo[3]}">
+			</TextBlock>
+			<Button Command="{Binding Route}" 
+					CommandParameter="{Binding SelectedItem, ElementName=buildingsList}"
+						Height="35" Width="246" Foreground="White" 
+						Background="#AD66D5"
+						Margin="0 50 0 -50" Content="Построить маршрут"/>
+			
+			<StackPanel HorizontalAlignment="Center" Grid.Row="2" 
+						Orientation="Horizontal"
+						Margin="0 50 0 0">
+				
+				<Button Command="{Binding AddCommand}" 
+						Height="35" Width="75" Foreground="White" 
+						Background="#AD66D5"
+						Margin="5 5 5 5" Content="Добавить"/>
+				<Button Command="{Binding EditCommand}" 
+						CommandParameter="{Binding SelectedItem, ElementName=buildingsList}"
+						Height="35" Width="75" Foreground="White" 
+						Background="#AD66D5"
+						Margin="5 5 5 5" Content="Изменить"/>
+				<Button Command="{Binding DeleteCommand}"
+						CommandParameter="{Binding SelectedItem, ElementName=buildingsList}"
+						Height="35" Width="75" Foreground="White" 
+						Background="#AD66D5"
+						Margin="5 5 5 5" Content="Удалить"/>
+			</StackPanel>
+			<ListBox x:Name="buildingsList" 
+					 ItemsSource="{Binding AnyBuildings}" 
+					 ScrollViewer.VerticalScrollBarVisibility="Visible"
+					 Height="400">
+
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel>
+							<TextBlock Text="{Binding TypeBuilding}" FontSize="16" />
+							<TextBlock Text="{Binding NameBuilding}" FontSize="12" />
+							<TextBlock Text="{Binding XBuilding, StringFormat='Запад-Восток : {0}'}" 
+									   FontSize="12" />
+							<TextBlock Text="{Binding YBuilding, StringFormat='Север-Юг : {0}'}" 
+									   FontSize="12" />
+						</StackPanel>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</StackPanel>
+		<!---->
+		
+		<!--Меню левая панель, закрытая-->
+		<StackPanel x:Name="MenuMiniStackPanel" Background="#7109AA" 
+					Grid.Column="0" Grid.RowSpan="4" Visibility="Hidden"
+					>
+			<Button x:Name="ShowButton" Click="ShowButton_Click" 
+					Foreground="White" Background="#AD66D5">
+				->
+			</Button>
+		</StackPanel>
+		<!---->
+		<!--Правая панель с картой-->
+		<ScrollViewer HorizontalScrollBarVisibility="Auto" 
+					  VerticalScrollBarVisibility="Auto"
+					  Grid.Column="2" Grid.RowSpan="4">
+			<Canvas  x:Name="canvas" Width="{Binding ActualWidth, ElementName=image}"
+					Height="{Binding ActualHeight, ElementName=image}"
+					>
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="MouseUp" >
+						<i:InvokeCommandAction Command="{Binding UserClick}"
+						CommandParameter="{Binding ElementName=canvas}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+
+				<Canvas.Background>
+					<VisualBrush>
+						<VisualBrush.Visual>
+							<Image x:Name="image"
+								   Source="/Resource/map.GIF"/>
+						</VisualBrush.Visual>
+					</VisualBrush>
+				</Canvas.Background>
+				
+				<!--Линия маршрута-->
+				<Line x:Name="xpath" 
+					  X1="{Binding RouteTo[0]}"
+					  Y1="{Binding RouteTo[1]}"
+					  X2="{Binding RouteTo[2]}"
+					  Y2="{Binding RouteTo[3]}"
+					  Stroke="Black"  
+					  StrokeThickness="8" 
+					  StrokeDashArray="1" />
+				
+				
+				<!--Картинки заведений-->
+				<ItemsControl ItemsSource="{Binding RectItems}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<Canvas/>
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+					<ItemsControl.ItemContainerStyle>
+						<Style TargetType="ContentPresenter">
+							<Setter Property="Canvas.Left" Value="{Binding XBuilding}"/>
+							<Setter Property="Canvas.Top" Value="{Binding YBuilding}"/>
+						</Style>
+					</ItemsControl.ItemContainerStyle>
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<Rectangle Width="20" Height="20" Fill="#EA0037"/>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+
+				<!--Картинка пользователя-->
+				<ItemsControl ItemsSource="{Binding UserCol}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<Canvas/>
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+					<ItemsControl.ItemContainerStyle>
+						<Style TargetType="ContentPresenter">
+							<Setter Property="Canvas.Left" Value="{Binding X}"/>
+							<Setter Property="Canvas.Top" Value="{Binding Y}"/>
+						</Style>
+					</ItemsControl.ItemContainerStyle>
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<Image Source="/Resource/student.ICO" Height="32" Width="32"/>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+
+			</Canvas>
+		</ScrollViewer>
+		<!---->
+	</Grid>
+</Window>
