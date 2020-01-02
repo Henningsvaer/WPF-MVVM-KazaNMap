@@ -12,8 +12,9 @@ namespace WPF_mapCourseWork
         private int _yCoord;
 
         
-        public GraphNode(string imageType = "Тип неизвестен", string nameBuildingOnGraphNode = "Имя неизвестно",
-                    int xCoord = 0,int yCoord = 0) 
+        public GraphNode(string imageType = "Тип неизвестен", 
+                         string nameBuildingOnGraphNode = "Имя неизвестно",
+                         int xCoord = 0,int yCoord = 0) 
         {
             _id = Id;
             _imageType = imageType;

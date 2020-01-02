@@ -5,29 +5,29 @@ namespace WPF_mapCourseWork
 {
     class User : INotifyPropertyChanged
     {
-        private int x;
-        private int y;
+        private int _x;
+        private int _y;
 
         public int X
         {
-            get => x;
+            get => _x;
             set
             {
                 if (value > 0)
                 {
-                    x = value;
+                    _x = value;
                     OnPropertyChanged(nameof(X));
                 }
             }
         }
         public int Y
         {
-            get => y;
+            get => _y;
             set
             {
                 if (value > 0)
                 {
-                    y = value;
+                    _y = value;
                     OnPropertyChanged(nameof(Y));
                 }
 

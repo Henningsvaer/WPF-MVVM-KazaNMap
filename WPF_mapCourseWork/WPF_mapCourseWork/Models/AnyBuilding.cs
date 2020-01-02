@@ -5,24 +5,25 @@ namespace WPF_mapCourseWork
 {
     public class AnyBuilding : INotifyPropertyChanged
     {
-        private string typeBuilding;
-        private string nameBuilding;
-        private int xBuilding;
-        private int yBuilding;
-        private int id;
+        private string _typeBuilding;
+        private string _nameBuilding;
+        private int _xBuilding;
+        private int _yBuilding;
+        private int _id;
 
         public AnyBuilding()
         {
 
         }
 
-        public AnyBuilding(string tB,string nB,int xB,int yB)
+        public AnyBuilding(string typeBuilding, string nameBuilding, 
+                           int xBuilding, int yBuilding, int id)
         {
-            tB = typeBuilding;
-            nB = nameBuilding;
-            xB = xBuilding;
-            yB = yBuilding;
-            id = Id;
+            this._typeBuilding = typeBuilding;
+            this._nameBuilding = nameBuilding;
+            this._xBuilding = xBuilding;
+            this._yBuilding = yBuilding;
+            this.Id = id;
         }
 
         public override bool Equals(object obj)
@@ -45,49 +46,70 @@ namespace WPF_mapCourseWork
             return base.GetHashCode();
         }
 
-        public int Id { get; set; }
+        public int Id {
+            get
+            {
+                return _id;
+            }
+            set  
+            { 
+                if(value > 0 && value.GetType() == typeof(int))
+                {
+                    _id = value;
+                }
+            }
+        }
 
         public string TypeBuilding {
             get
             {
-                return typeBuilding;
+                return _typeBuilding;
             }
             set
             {
-                typeBuilding = value;
+                _typeBuilding = value;
                 OnPropertyChanged(nameof(TypeBuilding));
             }
         }
         public string NameBuilding {
             get
             {
-                return nameBuilding;
+                return _nameBuilding;
             }
             set
             {
-                nameBuilding = value;
+                if (string.IsNullOrEmpty(value) == false)
+                {
+                    _nameBuilding = value;
+                }
                 OnPropertyChanged(nameof(NameBuilding));
             }
         }
         public int XBuilding {
             get
             {
-                return xBuilding;
+                return _xBuilding;
             }
             set
             {
-                xBuilding = value;
+                if (value > 0 && value.GetType() == typeof(int))
+                {
+                    _xBuilding = value;
+                }
                 OnPropertyChanged(nameof(XBuilding));
             }
         }
         public int YBuilding {
             get
             {
-                return yBuilding;
+                return _yBuilding;
             }
             set
             {
-                yBuilding = value;
+                if (value > 0 && value.GetType() == typeof(int))
+                {
+                    _yBuilding = value;
+                }
                 OnPropertyChanged(nameof(YBuilding));
             }
         }

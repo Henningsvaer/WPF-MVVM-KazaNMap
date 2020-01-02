@@ -11,16 +11,16 @@ using System.Windows.Input;
 namespace WPF_mapCourseWork
 {
 
-    class ApplicationViewModel : INotifyPropertyChanged
+    class ApplicationViewModel : INotifyPropertyChanged, IDisposable
     {
-        ApplicationContext db;
-        RelayCommand addCommand;
-        RelayCommand editCommand;
-        RelayCommand deleteCommand;
-        RelayCommand userClick;
-        RelayCommand route;
-        Graph mainGraph;
-        User user;
+        private ApplicationContext db;
+        private RelayCommand addCommand;
+        private RelayCommand editCommand;
+        private RelayCommand deleteCommand;
+        private RelayCommand userClick;
+        private RelayCommand route;
+        private Graph mainGraph;
+        private User user;
 
         public ObservableCollection<AnyBuilding> RectItems { get; set; }
         public ObservableCollection<User> UserCol { get; set; }
@@ -253,6 +253,15 @@ namespace WPF_mapCourseWork
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            
+        }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

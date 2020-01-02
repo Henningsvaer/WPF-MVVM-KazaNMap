@@ -5,8 +5,8 @@ namespace WPF_mapCourseWork
 {
     class RelayCommand : ICommand
     {
-        private Action<object> execute;
-        private Func<object, bool> canExecute;
+        private Action<object> _execute;
+        private Func<object, bool> _canExecute;
 
         event EventHandler ICommand.CanExecuteChanged
         {
@@ -24,18 +24,18 @@ namespace WPF_mapCourseWork
 
         public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
-            this.execute = execute;
-            this.canExecute = canExecute;
+            this._execute = execute;
+            this._canExecute = canExecute;
         }
 
         bool ICommand.CanExecute(object parameter)
         {
-            return this.canExecute == null || this.canExecute(parameter);
+            return this._canExecute == null || this._canExecute(parameter);
         }
 
         void ICommand.Execute(object parameter)
         {
-            this.execute(parameter);
+            this._execute(parameter);
         }
     }
 }

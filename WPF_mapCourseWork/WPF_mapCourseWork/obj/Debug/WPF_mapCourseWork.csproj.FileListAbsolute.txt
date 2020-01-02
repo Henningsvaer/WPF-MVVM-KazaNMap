@@ -49,7 +49,6 @@ C:\Users\DNS\Documents\GitHub\WPF-MVVM-KazaNMap\WPF_mapCourseWork\WPF_mapCourseW
 C:\Users\DNS\Documents\GitHub\WPF-MVVM-KazaNMap\WPF_mapCourseWork\WPF_mapCourseWork\bin\Debug\nunit.framework.xml
 C:\Users\DNS\Documents\GitHub\WPF-MVVM-KazaNMap\WPF_mapCourseWork\WPF_mapCourseWork\bin\Debug\System.Data.SQLite.xml
 C:\Users\DNS\Documents\GitHub\WPF-MVVM-KazaNMap\WPF_mapCourseWork\WPF_mapCourseWork\bin\Debug\System.Data.SQLite.dll.config
-C:\Users\DNS\Documents\GitHub\WPF-MVVM-KazaNMap\WPF_mapCourseWork\WPF_mapCourseWork\obj\Debug\WPF_mapCourseWork.csprojResolveAssemblyReference.cache
 C:\Users\DNS\Documents\GitHub\WPF-MVVM-KazaNMap\WPF_mapCourseWork\WPF_mapCourseWork\obj\Debug\Views\BuildingsWindow.g.cs
 C:\Users\DNS\Documents\GitHub\WPF-MVVM-KazaNMap\WPF_mapCourseWork\WPF_mapCourseWork\obj\Debug\MainWindow.g.cs
 C:\Users\DNS\Documents\GitHub\WPF-MVVM-KazaNMap\WPF_mapCourseWork\WPF_mapCourseWork\obj\Debug\Views\App.g.cs
@@ -61,6 +60,7 @@ C:\Users\DNS\Documents\GitHub\WPF-MVVM-KazaNMap\WPF_mapCourseWork\WPF_mapCourseW
 C:\Users\DNS\Documents\GitHub\WPF-MVVM-KazaNMap\WPF_mapCourseWork\WPF_mapCourseWork\obj\Debug\KazanMap.g.resources
 C:\Users\DNS\Documents\GitHub\WPF-MVVM-KazaNMap\WPF_mapCourseWork\WPF_mapCourseWork\obj\Debug\WPF_mapCourseWork.Properties.Resources.resources
 C:\Users\DNS\Documents\GitHub\WPF-MVVM-KazaNMap\WPF_mapCourseWork\WPF_mapCourseWork\obj\Debug\WPF_mapCourseWork.csproj.GenerateResource.Cache
-C:\Users\DNS\Documents\GitHub\WPF-MVVM-KazaNMap\WPF_mapCourseWork\WPF_mapCourseWork\obj\Debug\WPF_mapCourseWork.csproj.CoreCompileInputs.cache
 C:\Users\DNS\Documents\GitHub\WPF-MVVM-KazaNMap\WPF_mapCourseWork\WPF_mapCourseWork\obj\Debug\KazanMap.exe
 C:\Users\DNS\Documents\GitHub\WPF-MVVM-KazaNMap\WPF_mapCourseWork\WPF_mapCourseWork\obj\Debug\KazanMap.pdb
+C:\Users\DNS\Documents\GitHub\WPF-MVVM-KazaNMap\WPF_mapCourseWork\WPF_mapCourseWork\obj\Debug\WPF_mapCourseWork.csproj.CopyComplete
+C:\Users\DNS\Documents\GitHub\WPF-MVVM-KazaNMap\WPF_mapCourseWork\WPF_mapCourseWork\obj\Debug\WPF_mapCourseWork.csprojAssemblyReference.cache
